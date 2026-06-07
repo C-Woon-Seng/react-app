@@ -18,7 +18,7 @@ export default function Auth() {
         setError(null);
         let result;
         if (mode === "signup") {
-            result = signUp(data.email, data.password);
+            result = signUp(data.email, data.password, data.username);
         } else {
             result = login(data.email, data.password)
         }
@@ -40,6 +40,18 @@ export default function Auth() {
                     <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
 
                         {error && <div className="error-message">{error}</div>}
+
+                        {mode === "signup" && (
+                            <div className="form-group">
+                                <label className="form-label" htmlFor="username">
+                                    Username
+                                </label>
+                                <input className="form-input" type="text" id="username"
+                                    {...register('username', { required: "Username is required" })} />
+                                {errors.username && <span className="form-error">{errors.username.message}</span>}
+                            </div>
+                        )}
+
                         <div className="form-group">
                             <label className="form-label" htmlFor="email">
                                 Email

@@ -29,7 +29,7 @@ export default function NavBar() {
                         </div> 
                     ) : (
                         <div className="navbar-user">
-                            <span>Hello, {user.email}</span>
+                            <span>Hello, {user.username || user.email}</span>
                             <button className="btn btn-secondary" onClick={logout}>Log out</button>
                         </div>
                     )}
