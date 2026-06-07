@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom"
 import { getProductById } from "../data/products";
 import { useCart } from "../context/CartContext";
 
 export default function ProductDetails() {
     const { id } = useParams();
-    const { product, setProduct } = useState(null);
-    const { addToCart, cartItems } = useCart()
-    
+    const navigate = useNavigate();
+    const { addToCart, cartItems } = useCart();
+
+    const product = getProductById(id);
 
     useEffect(() => {
-        const foundProduct = getProductById(id);
-
-        if (!foundProduct) {
+        if (!product) {
             navigate("/");
-            returnl;
         }
-
-        setProduct(foundProduct);
-    }, [id]);
+    }, [product, navigate]);
 
     if (!product) {
-        return <h1>Loading...</h1>
+        return <h1>Loading...</h1>;
     }
 
     const productInCart = cartItems.find((item) => item.id === product.id);

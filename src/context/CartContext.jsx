@@ -1,10 +1,11 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState } from "react";
 import { getProductById } from "../data/products";
 
 export const CartContext = createContext(null);
 
 export default function CartProvider({ children }) {
-    const { cartItems, setCartItems } = useState([]);
+    const [cartItems, setCartItems] = useState([]);
 
     function addToCart(productId) {
         const existing = cartItems.find((item) => item.id === productId)
@@ -41,11 +42,12 @@ export default function CartProvider({ children }) {
 
     }
 
-    function getCartTotal(){
+    function getCartTotal() {
         const total = cartItems.reduce((total, item) => {
-            const produce = getProductById(item.id)
-            return total + (product.price * product.quantity)
-        }, 0)
+            const product = getProductById(item.id);
+            return total + (product ? product.price * item.quantity : 0);
+        }, 0);
+        return total;
     }
 
     function clearCart(){

@@ -1,4 +1,4 @@
-import { userCart } from "../context/CartContext"
+import { useCart } from "../context/CartContext"
 
 export default function Checkout() {
     const { getCartItemsWithProducts, updateQuantity, removeFromCart, getCartTotal, clearCart } = useCart();
@@ -28,9 +28,9 @@ export default function Checkout() {
                                     </div>
                                     <div className="checkout-item-controls">
                                         <div className="quantity-controls">
-                                            <button className="quantity-btn" onCLick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
+                                            <button className="quantity-btn" onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
                                             <span className="quantity-value">{item.quantity}</span>
-                                            <button className="quantity-btn" onCLick={() => updateQuantity(item.id, item.quantity + 1)} >+</button>
+                                            <button className="quantity-btn" onClick={() => updateQuantity(item.id, item.quantity + 1)} >+</button>
                                         </div>
                                     </div>
 

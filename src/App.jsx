@@ -3,9 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Checkout from "./pages/Checkout";
+import ProductDetails from "./pages/ProductDetails";
 import NavBar from "./components/NavBar"
 import AuthProvider from "./context/AuthContext";
 import CartProvider from "./context/CartContext";
+
 
 function App() {
   return (
