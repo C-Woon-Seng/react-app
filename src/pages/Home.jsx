@@ -7,7 +7,9 @@ export default function Home(){
         <div className="page">
             <div className="home-hero">
                 <h1 className="home-title">Welcome to TechHaven</h1>
-                <p className="home-subtitle">Find your desired tech at affordable prices!</p>
+                <p className="home-subtitle">
+                    Find your desired tech at affordable prices!
+                </p>
             </div>
             <div className="container">
                 <h2 className="page-title">Our Products</h2>

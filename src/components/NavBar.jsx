@@ -1,6 +1,8 @@
+import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
-export default function NavBar(){
+export default function NavBar() {
+    const { user } = useAuth();
     return (
         <nav className="navbar">
             <div className="navbar-container">
@@ -8,20 +10,31 @@ export default function NavBar(){
                     TechHaven
                 </Link>
                 <div className="navbar-links">
-                    <Link to="/" className="navbar-link">Home</Link>
-                    <Link to="/checkout" className="navbar-link">Cart</Link>
+                    <Link to="/" className="navbar-link">
+                        Home
+                    </Link>
+                    <Link to="/checkout" className="navbar-link">
+                        Cart
+                    </Link>
                 </div>
                 <div className="navbar-auth">
-                    <div className="navbar-auth-links">
-                        <Link to="/auth" className="btn btn-secondary">
-                            Log in
-                        </Link>
-                        <Link to="/auth" className="btn btn-primary">
-                            Sign Up
-                        </Link>
-                    </div>
+                    {!user ? (
+                        <div className="navbar-auth-links">
+                            <Link to="/auth" className="btn btn-secondary">
+                                Log in
+                            </Link>
+                            <Link to="/auth" className="btn btn-primary">
+                                Sign Up
+                            </Link>
+                        </div> 
+                    ) : (
+                        <div className="navbar-user">
+                            <span>Hello, {user.email}</span>
+                            <button className="btn btn-secondary" onClick={logout}>Log out</button>
+                        </div>
+                    )}
                 </div>
             </div>
         </nav>
-    )
+    );
 }
