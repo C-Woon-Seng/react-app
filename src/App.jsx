@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Checkout from "./pages/Checkout";
@@ -10,6 +10,7 @@ import CartProvider from "./context/CartContext";
 
 
 function App() {
+  const location = useLocation();
   return (
     <AuthProvider>
       <CartProvider>
@@ -17,7 +18,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/auth" element={<Auth key={location.state?.mode || "auth"} />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/products/:id" element={<ProductDetails />} />
         </Routes>
